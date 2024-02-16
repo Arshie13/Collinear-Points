@@ -229,20 +229,6 @@ let sketch = function (p: any) {
     }
   }
 
-  // Declare your point objects here~
-  // const point = new Point(19000, 10000);
-  // const point2 = new Point(10000, 10000);
-
-  // from input6.txt
-  // const points: Point[] = [
-  //   new Point(19000, 10000),
-  //   new Point(18000, 10000),
-  //   new Point(32000, 10000),
-  //   new Point(21000, 10000),
-  //   new Point(1234, 5678),
-  //   new Point(14000, 10000),
-  // ];
-
   const points: Point[] = [
     new Point(5000, 0),
     new Point(10000, 0),
@@ -296,12 +282,6 @@ let sketch = function (p: any) {
     p.translate(padding, height - padding);
     p.scale(1 / 100, -1 / 100);
 
-    // Call your draw and drawTo here.
-
-    // point.draw();
-    // point2.draw();
-    // point.drawTo(point2);
-
     p.stroke("black")
     p.strokeWeight(5);
 
@@ -319,9 +299,6 @@ let sketch = function (p: any) {
       console.log(segment.toString());
       segment.draw();
     }
-
-    // trace the dots that are on the same straight line
-
   };
 };
 
