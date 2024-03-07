@@ -1,6 +1,5 @@
 import LineSegment from "./LineSegment";
 import Point from "./Point";
-import Shellsort from "./algo/Shellsort";
 
 export default class FastCollinearPoints {
 
@@ -16,9 +15,8 @@ export default class FastCollinearPoints {
     if (points === null) {
       throw new Error("Point is null");
     }
-    // sort the points using shellsort
-    Shellsort.sort(jCopy);
-    // jCopy.sort((a, b) => a.compareTo(b));
+    
+    jCopy.sort((a, b) => a.compareTo(b));
 
     // throw error if the argument to the constructor contains a repeated point.
     if (this.hasDuplicate(jCopy)) {
