@@ -1,7 +1,6 @@
 import LineSegment from "./LineSegment";
 import Point from "./Point";
 import p5 from "p5";
-import Shellsort from "./algo/Shellsort";
 
 export default class BruteCollinearPoints {
 
@@ -18,9 +17,7 @@ export default class BruteCollinearPoints {
       throw new Error("Point is null");
     }
 
-    // jCopy.sort((a, b) => a.x - b.x);
-    Shellsort.sort(jCopy)
-
+    jCopy.sort((a, b) => a.x - b.x);
 
     // throw error if the argument to the constructor contains a repeated point.
     if (this.hasDuplicate(jCopy)) {
