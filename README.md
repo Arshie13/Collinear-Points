@@ -1,1 +1,1 @@
-Collinear Points in Typescript using p5 and parcel
+Collinear Points in Typescript using p5 and parcel.
