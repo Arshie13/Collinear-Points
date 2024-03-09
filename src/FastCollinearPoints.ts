@@ -1,5 +1,6 @@
 import LineSegment from "./LineSegment";
 import Point from "./Point";
+import Shellsort from "./shellsort";
 
 export default class FastCollinearPoints {
 
@@ -7,8 +8,8 @@ export default class FastCollinearPoints {
   d: any;
 
   constructor(points: Point[], d: any) {
-    // YOUR CODE HERE
     this.d = d;
+    const n = points.length;
     let jCopy: Point[] = points.slice();
 
     // throw error if point is null
@@ -16,39 +17,37 @@ export default class FastCollinearPoints {
       throw new Error("Point is null");
     }
     
-    jCopy.sort((a, b) => a.compareTo(b));
+    // jCopy.sort((a, b) => a.compareTo(b));
+    Shellsort.sort(jCopy)
 
-    // throw error if the argument to the constructor contains a repeated point.
     if (this.hasDuplicate(jCopy)) {
       throw new Error("U have duplicate points");
     }
 
-    for (let i = 0; i < jCopy.length - 3; i++) {
+    for (let i = 0; i < n; i++) {
+      const p = jCopy[i];
+      const slopeSortedPoints = jCopy.slice().sort((a, b) => p.slopeTo(a) - p.slopeTo(b));
 
-      jCopy.sort((a, b) => jCopy[i].slopeTo(a) - jCopy[i].slopeTo(b));
-
-      for (let p = 0, first = 1, last = 2; last < jCopy.length; last++) {
-        while (last < jCopy.length &&
-          jCopy[p].slopeTo(jCopy[first]) === jCopy[p].slopeTo(jCopy[last])
-        ) {
-          last++;
+      let j = 1;
+      while (j < n - 2) {
+        let k = j + 1;
+        while (k < n && p.slopeTo(slopeSortedPoints[j]) === p.slopeTo(slopeSortedPoints[k])) {
+          k++;
         }
-
-        if (last - first >= 3 &&
-          jCopy[p].compareTo(jCopy[first]) < 0) {
-          this.jSegments.push(new LineSegment(jCopy[p], jCopy[last - 1], d));
+        if (k - j >= 3 && p.compareTo(slopeSortedPoints[j]) < 0) {
+          this.jSegments.push(new LineSegment(p, slopeSortedPoints[k - 1], d));
         }
-        first = last;
+        j = k;
       }
     }
   }
+
+
   numberOfSegments(): number {
-    // YOUR CODE HERE
     return this.jSegments.length;
   }
 
   segments(): LineSegment[] {
-    // YOUR CODE HERE
     return this.jSegments
   }
 

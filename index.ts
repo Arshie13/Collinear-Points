@@ -100,7 +100,7 @@ let sketch = function (p: p5) {
     p.strokeWeight(2);
     p.line(100, 100, 200, 200);
     // console.log(collinear2);
-    for (const segment of collinear2.segments()) {
+    for (const segment of collinear.segments()) {
       console.log(segment.toStrings());
       segment.draw();
     }
