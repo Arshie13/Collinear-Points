@@ -1,6 +1,7 @@
 import LineSegment from "./LineSegment";
 import Point from "./Point";
 import p5 from "p5";
+import Shellsort from "./shellsort";
 
 export default class BruteCollinearPoints {
 
@@ -8,9 +9,9 @@ export default class BruteCollinearPoints {
   p: p5;
 
   constructor(points: Point[], p: p5) {
-    // YOUR CODE HERE
     this.p = p;
     let jCopy: Point[] = points.slice();
+    Shellsort.sort(jCopy)
 
     // throw error if point is null
     if (points === null) {
@@ -19,7 +20,6 @@ export default class BruteCollinearPoints {
 
     jCopy.sort((a, b) => a.x - b.x);
 
-    // throw error if the argument to the constructor contains a repeated point.
     if (this.hasDuplicate(jCopy)) {
       throw new Error("U have duplicate points");
     }
@@ -48,12 +48,10 @@ export default class BruteCollinearPoints {
   }
 
   numberOfSegments(): number {
-    // YOUR CODE HERE
     return this.jSegments.length;
   }
 
   segments(): LineSegment[] {
-    // YOUR CODE HERE
     return this.jSegments
   }
 
