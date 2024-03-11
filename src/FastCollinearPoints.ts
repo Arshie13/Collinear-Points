@@ -1,14 +1,15 @@
 import LineSegment from "./LineSegment";
 import Point from "./Point";
-import Shellsort from "./shellsort";
+import Mergesort from "./Mergesort";
+import p5 from "p5";
 
 export default class FastCollinearPoints {
 
   private jSegments: LineSegment[] = [];
-  d: any;
+  p: p5;
 
-  constructor(points: Point[], d: any) {
-    this.d = d;
+  constructor(points: Point[], p: p5) {
+    this.p = p;
     const n = points.length;
     let jCopy: Point[] = points.slice();
 
@@ -18,7 +19,9 @@ export default class FastCollinearPoints {
     }
     
     // jCopy.sort((a, b) => a.compareTo(b));
-    Shellsort.sort(jCopy)
+    // Shellsort.sort(jCopy)
+    let mergesort = new Mergesort();
+    mergesort.sort(jCopy);
 
     if (this.hasDuplicate(jCopy)) {
       throw new Error("U have duplicate points");
@@ -35,7 +38,7 @@ export default class FastCollinearPoints {
           k++;
         }
         if (k - j >= 3 && p.compareTo(slopeSortedPoints[j]) < 0) {
-          this.jSegments.push(new LineSegment(p, slopeSortedPoints[k - 1], d));
+          this.jSegments.push(new LineSegment(p, slopeSortedPoints[k - 1], this.p));
         }
         j = k;
       }

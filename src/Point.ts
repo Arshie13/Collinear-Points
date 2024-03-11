@@ -1,9 +1,11 @@
+import p5 from "p5";
+
 export default class Point {
 	x: number;
 	y: number;
-	p: any;
+	p: p5;
 
-	constructor(x: number, y: number, p: any) {
+	constructor(x: number, y: number, p: p5) {
 		this.x = x;
 		this.y = y;
 		this.p = p;

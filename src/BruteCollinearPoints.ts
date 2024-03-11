@@ -1,7 +1,7 @@
 import LineSegment from "./LineSegment";
 import Point from "./Point";
 import p5 from "p5";
-import Shellsort from "./shellsort";
+import Mergesort from "./Mergesort";
 
 export default class BruteCollinearPoints {
 
@@ -11,7 +11,10 @@ export default class BruteCollinearPoints {
   constructor(points: Point[], p: p5) {
     this.p = p;
     let jCopy: Point[] = points.slice();
-    Shellsort.sort(jCopy)
+
+    // jCopy.sort((a, b) => a.compareTo(b));
+    let mergesort = new Mergesort();
+    mergesort.sort(jCopy);
 
     // throw error if point is null
     if (points === null) {
