@@ -1,11 +1,12 @@
 import Point from "./Point";
+import p5 from 'p5'
 
 export default class LineSegment {
   p: Point;
   q: Point;
-  drawPoint: any;
+  drawPoint: p5;
 
-  constructor(p: Point, q: Point, drawPoint: any) {
+  constructor(p: Point, q: Point, drawPoint: p5) {
     // DO NOT MODIFY
 
     this.p = p;
